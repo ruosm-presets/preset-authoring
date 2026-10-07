@@ -7,6 +7,26 @@ into group `{{group}}`; its position inside the group follows the sorting
 rules in [conventions.md](conventions.md); the icon follows
 [icon-pipeline.md](icon-pipeline.md).
 
+## Brand card (вход-опросник)
+
+Start this card BEFORE assembling the `<item>`; fill it in cascade:
+user-provided facts → auto-research → single questions for what remains.
+
+| Field              | Source                                                 | Required |
+|--------------------|--------------------------------------------------------|----------|
+| name / ru.name     | user → site title/footer                               | yes      |
+| website            | user (starting point of research)                      | yes      |
+| city / context     | user                                                   | no       |
+| type (shop/cuisine)| user → site → ask only if ambiguous                    | yes      |
+| locator page       | site navigation (Магазины/Адреса/Карта)                | yes      |
+| email / socials    | site footer                                            | no       |
+| wikidata QID       | search by name; may not exist — then omit              | no       |
+| opening hours      | site; otherwise skip — never invent                    | no       |
+| icon               | agent by meaning: reuse → Twemoji (icon-pipeline.md)   | yes      |
+
+An empty optional field is better than invented data. Показывай заполненную
+карточку целиком и получи подтверждение до вставки пункта.
+
 ## Skeleton
 
 Section purposes are commented above each block, in the repository's comment
