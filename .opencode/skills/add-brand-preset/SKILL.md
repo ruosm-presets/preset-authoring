@@ -96,11 +96,17 @@ snake_case, файл в `pics/icons/`, URL Pages
 ### 4. Вставка
 
 Найди группу; определи позицию по сортировке (числа → латиница → кириллица,
-внутри — алфавит; при наличии ru.name сортировка по нему). Собери `<item>`
-по шаблону; порядок атрибутов: key/ref → text/name → ru.text/ru.name →
-values → ru.display_values → default → type → preset_name_label →
-name_context → icon (последний). Максимум переиспользования чанков; порядок
-полей экранной формы — как во встроенных заготовках JOSM.
+внутри — алфавит; при наличии ru.name сортировка по нему). Подходящей
+группы для типа нет — не запихивай пункт в чужую: предложи человеку
+создать новую `<group>` (name + ru.name + иконка по
+[references/icon-pipeline.md](references/icon-pipeline.md), позиция и
+разделители — по порядку групп из
+[references/conventions.md](references/conventions.md)); создавай её
+только с его слова. Собери `<item>` по шаблону; порядок атрибутов:
+key/ref → text/name → ru.text/ru.name → values → ru.display_values →
+default → type → preset_name_label → name_context → icon (последний).
+Максимум переиспользования чанков; порядок полей экранной формы — как во
+встроенных заготовках JOSM.
 
 Читать: [references/conventions.md](references/conventions.md) (порядок
 полей, сортировка, атрибуты, комментарии/отступы/пробелы, язык, чанки) —
