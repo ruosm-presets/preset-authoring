@@ -69,6 +69,7 @@ works without editing the config:
 
 ```bash
 git clone --depth 1 https://github.com/ruosm-presets/preset-authoring.git ~/tools/preset-authoring
+mkdir -p ~/.config/opencode/skills
 ln -s ~/tools/preset-authoring/.opencode/skills/add-brand-preset ~/.config/opencode/skills/add-brand-preset
 ```
 
