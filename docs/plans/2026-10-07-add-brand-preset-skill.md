@@ -124,6 +124,29 @@ Expected: обе ≥1
 git add reference/icon-pipeline.md && git commit -m "docs: icon pipeline (reuse -> twemoji -> snake_case -> pages url)"
 ```
 
+### Task 4b: reference/update-playbook.md — методология обновления пунктов
+
+**Files:**
+- Create: `reference/update-playbook.md`
+
+**Interfaces:**
+- Produces: методология update-режима для SKILL.md; прецеденты из spec (SUBJOY, Связной, subjoy.ru soft-404).
+
+- [ ] **Step 1: Написать playbook**
+
+Разделы: триаж ссылок (404 — вероятно мёртвая страница; 401/403/498 — бот-стена, сайт жив; таймаут/000 — гео-блок или смерть, проверять несколькими способами; soft-404 — страница отвечает 404, но отдаёт контент, проверять навигацию живого сайта); Wikidata-проверка бренда (P856 официальные сайты, P576 дата закрытия, P1366 преемник — с оговоркой, что вики может отставать, верить новостям/сайту); ребрендинг-кейс SUBJOY пошагово (что менялось в пункте); правило минимального диффа; удаление пунктов — только человек.
+
+- [ ] **Step 2: Проверить якорные строки**
+
+Run: `grep -c 'P576' reference/update-playbook.md && grep -c 'soft-404' reference/update-playbook.md`
+Expected: обе ≥1
+
+- [ ] **Step 3: Коммит**
+
+```bash
+git add reference/update-playbook.md && git commit -m "docs: update playbook for existing preset items"
+```
+
 ### Task 5: SKILL.md — ядро скилла
 
 **Files:**
@@ -135,12 +158,12 @@ git add reference/icon-pipeline.md && git commit -m "docs: icon pipeline (reuse 
 
 - [ ] **Step 1: Написать SKILL.md**
 
-Frontmatter: `name: add-brand-preset`, description из spec (третье лицо, триггеры RU+EN). Тело: 6 шагов процесса из spec (исследование → данные → иконка → вставка → верификация → коммит), каждый шаг ссылается на свой reference-файл; раздел Guardrails дословно по spec (PII; мёртвый/сомнительный бренд → эскалация с прецедентами SUBJOY и «Связной»; не выдумывать данные; только клоны; push по слову); правило «вопросы по одному».
+Frontmatter: `name: add-brand-preset`, description из spec (третье лицо, триггеры RU+EN, включая «обнови пункт пресета», «update preset item»). Тело: 6 шагов процесса добавления из spec (исследование → данные → иконка → вставка → верификация → коммит), каждый шаг ссылается на свой reference-файл; режим обновления (update) из spec — компактно, со ссылкой на reference/update-playbook.md; раздел Guardrails дословно по spec (PII; мёртвый/сомнительный бренд → эскалация с прецедентами SUBJOY и «Связной»; не выдумывать данные; только клоны; push по слову; удаление пунктов — только человек); правило «вопросы по одному».
 
 - [ ] **Step 2: Проверить структуру frontmatter**
 
-Run: `head -5 .opencode/skills/add-brand-preset/SKILL.md | grep -E '^name: add-brand-preset$' && grep -c 'добавь бренд' .opencode/skills/add-brand-preset/SKILL.md`
-Expected: обе проверки ≥1
+Run: `head -5 .opencode/skills/add-brand-preset/SKILL.md | grep -E '^name: add-brand-preset$' && grep -c 'добавь бренд' .opencode/skills/add-brand-preset/SKILL.md && grep -c 'обнови пункт' .opencode/skills/add-brand-preset/SKILL.md`
+Expected: все проверки ≥1
 
 - [ ] **Step 3: Коммит**
 
@@ -163,6 +186,10 @@ git add .opencode/skills/add-brand-preset/SKILL.md && git commit -m "feat: add-b
 - [ ] **Step 2: Dry-run на живом бренде**
 
 В ветке-песочнице literan-moscow: прогнать скилл на бренде по выбору пользователя; критерии приёмки из spec (позиция, чекер зелёный, иконка корректна). Ожидаемое вмешательство человека — только ответы на вопросы скилла.
+
+- [ ] **Step 2b: Dry-run режима обновления**
+
+В той же песочнице: попросить скилл обновить пункт с известной переехавшей ссылкой; критерий — заменена только ссылка, чекер зелёный.
 
 - [ ] **Step 3: Абзац в CONTRIBUTING.md literan-moscow**
 
