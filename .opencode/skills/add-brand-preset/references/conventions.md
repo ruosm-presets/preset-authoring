@@ -36,6 +36,10 @@ does not reshuffle them:
 3. If a name exists in both scripts, sort by the Russian one:
    `Domino’s Pizza` / `Домино’c Пицца` sorts by `Домино’c Пицца`.
 
+Quoted examples in this digest (`36,6`, `CMD`, `Subway`, `IL Патио`,
+`Domino’s Pizza`, `Л'Этуаль` / `L'etoile`) are verbatim from literan-moscow
+CONTRIBUTING.md — illustrative sorting fixtures, not authored precedents.
+
 Groups in the menu follow this macro-order: other groups → `<separator>` →
 government / medicine / education → `<separator>` → city entities.
 

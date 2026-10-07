@@ -53,7 +53,7 @@ description: "Use when adding or updating a brand / shop chain / POI item in a J
 Сначала реюз существующего файла из `pics/icons/` (подбор по смыслу, список —
 `ls pics/icons/`); если подходящего нет — Twemoji по кодопоинту, имя
 snake_case, файл в `pics/icons/`, URL Pages
-(`https://ruosm-presets.github.io/literan-moscow/pics/icons/<name>.svg`).
+(`https://ruosm-presets.github.io/literan-moscow/pics/icons/<file>`).
 
 Читать: [references/icon-pipeline.md](references/icon-pipeline.md) (конвейер
 реюз → Twemoji → имя → URL; формат имён проверяет чекер) — на шаге подбора
