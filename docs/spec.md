@@ -41,12 +41,13 @@ AI-агент может вести этот процесс целиком, но
 ```
 README.md                       # назначение + установка
 docs/spec.md                    # этот документ
-.opencode/skills/add-brand-preset/SKILL.md
-reference/
-  conventions.md                # выжимка правил literan-moscow
-  item-template.md              # скелет <item> с плейсхолдерами
-  icon-pipeline.md              # конвейер иконок (реюз → Twemoji → Pages URL)
-  update-playbook.md            # методология обновления существующих пунктов
+.opencode/skills/add-brand-preset/
+  SKILL.md                      # ядро скилла (анатомия opencode-skill-creator)
+  references/
+    conventions.md              # выжимка правил literan-moscow
+    item-template.md            # скелет <item> с плейсхолдерами
+    icon-pipeline.md            # конвейер иконок (реюз → Twemoji → Pages URL)
+    update-playbook.md          # методология обновления существующих пунктов
 ```
 
 ## Скилл `add-brand-preset`

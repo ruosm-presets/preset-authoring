@@ -147,23 +147,29 @@ Expected: обе ≥1
 git add reference/update-playbook.md && git commit -m "docs: update playbook for existing preset items"
 ```
 
-### Task 5: SKILL.md — ядро скилла
+### Task 5: SKILL.md — ядро скилла + самодостаточная структура
 
 **Files:**
 - Create: `.opencode/skills/add-brand-preset/SKILL.md`
+- Move: `reference/*.md` → `.opencode/skills/add-brand-preset/references/` (git mv, 5 файлов)
+- Modify: `README.md` (упоминания путей reference/ → новый путь)
 
 **Interfaces:**
-- Consumes: все reference/*.md (относительные пути `../../../reference/...` от SKILL.md), чекер `scripts/check_presets.py` в клоне literan-moscow.
-- Produces: скилл, видимый opencode после установки.
+- Consumes: все references/*.md (теперь внутри папки скилла), чекер `scripts/check_presets.py` в клоне literan-moscow.
+- Produces: самодостаточный скилл, видимый opencode после установки (анатомия по opencode-skill-creator: ресурсы внутри папки скилла).
+
+- [ ] **Step 0: Перенести reference/ внутрь скилла**
+
+Run: `git mv reference .opencode/skills/add-brand-preset/references` + поправить пути в README.md и взаимные ссылки в перенесённых файлах (если указывают на `reference/`).
 
 - [ ] **Step 1: Написать SKILL.md**
 
-Frontmatter: `name: add-brand-preset`, description из spec (третье лицо, триггеры RU+EN, включая «обнови пункт пресета», «update preset item»). Тело: 6 шагов процесса добавления из spec (исследование → данные → иконка → вставка → верификация → коммит), каждый шаг ссылается на свой reference-файл; режим обновления (update) из spec — компактно, со ссылкой на reference/update-playbook.md; раздел Guardrails дословно по spec (PII; мёртвый/сомнительный бренд → эскалация с прецедентами SUBJOY и «Связной»; не выдумывать данные; только клоны; push по слову; удаление пунктов — только человек); правило «вопросы по одному».
+Frontmatter: `name: add-brand-preset` (kebab-case, regex `^[a-z0-9]+(-[a-z0-9]+)*$`, папка совпадает), description из spec + pushy-стиль opencode-skill-creator (что делает + когда триггерить, включая «даже если явно не просят», триггеры RU+EN: «добавь бренд в пресет», «обнови пункт пресета», add brand to preset, update preset item). Тело <500 строк: 6 шагов процесса добавления из spec (исследование → данные → иконка → вставка → верификация → коммит), каждый шаг ссылается на свой файл в references/ с указанием когда читать; режим обновления (update) — компактно, со ссылкой на references/update-playbook.md; раздел Guardrails дословно по spec (PII; мёртвый/сомнительный бренд → эскалация; не выдумывать данные; только клоны; push по слову; удаление пунктов — только человек); правило «вопросы по одному».
 
-- [ ] **Step 2: Проверить структуру frontmatter**
+- [ ] **Step 2: Проверить структуру frontmatter и размер**
 
-Run: `head -5 .opencode/skills/add-brand-preset/SKILL.md | grep -E '^name: add-brand-preset$' && grep -c 'добавь бренд' .opencode/skills/add-brand-preset/SKILL.md && grep -c 'обнови пункт' .opencode/skills/add-brand-preset/SKILL.md`
-Expected: все проверки ≥1
+Run: `head -5 .opencode/skills/add-brand-preset/SKILL.md | grep -E '^name: add-brand-preset$' && grep -c 'добавь бренд' .opencode/skills/add-brand-preset/SKILL.md && grep -c 'обнови пункт' .opencode/skills/add-brand-preset/SKILL.md && [ $(wc -l < .opencode/skills/add-brand-preset/SKILL.md) -lt 500 ] && echo SIZE-OK`
+Expected: все проверки ≥1 и SIZE-OK
 
 - [ ] **Step 3: Коммит**
 
@@ -197,5 +203,5 @@ git add .opencode/skills/add-brand-preset/SKILL.md && git commit -m "feat: add-b
 
 - [ ] **Step 4: Финальная проверка плана репозитория**
 
-Run: `find . -name '*.md' | sort`
-Expected: `./README.md ./docs/spec.md ./docs/plans/2026-10-07-add-brand-preset-skill.md ./reference/conventions.md ./reference/icon-pipeline.md ./reference/item-template.md ./.opencode/skills/add-brand-preset/SKILL.md`
+Run: `find . -name '*.md' -not -path './.superpowers/*' | sort`
+Expected: `./README.md ./docs/spec.md ./docs/plans/2026-10-07-add-brand-preset-skill.md ./.opencode/skills/add-brand-preset/SKILL.md ./.opencode/skills/add-brand-preset/references/conventions.md ./.opencode/skills/add-brand-preset/references/icon-pipeline.md ./.opencode/skills/add-brand-preset/references/item-template.md ./.opencode/skills/add-brand-preset/references/update-playbook.md`
