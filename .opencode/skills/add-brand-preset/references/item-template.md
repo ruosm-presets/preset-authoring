@@ -18,7 +18,7 @@ Start this card BEFORE assembling the `<item>`. Обход формы — стр
 | 1 | name / ru.name     | user → site title/footer                               | yes      |
 | 2 | website            | user (starting point of research)                      | yes      |
 | 3 | city / context     | user                                                   | no       |
-| 4 | type (shop/cuisine)| user → site → ask only if ambiguous                    | yes      |
+| 4 | type (shop/cuisine)| user → site → ask only if ambiguous; mixed → picker combo, not a fixed `<key>` | yes |
 | 5 | locator page       | site navigation (Магазины/Адреса/Карта)                | yes      |
 | 6 | email / socials    | site footer                                            | no       |
 | 7 | wikidata QID       | search by name; may not exist — then omit              | no       |
