@@ -9,20 +9,21 @@ rules in [conventions.md](conventions.md); the icon follows
 
 ## Brand card (вход-опросник)
 
-Start this card BEFORE assembling the `<item>`; fill it in cascade:
-user-provided facts → auto-research → single questions for what remains.
+Start this card BEFORE assembling the `<item>`. Обход формы — строго
+сверху вниз, одно поле — один вопрос; ответ «не знаю» оставляет пробел
+для авто-исследования.
 
-| Field              | Source                                                 | Required |
-|--------------------|--------------------------------------------------------|----------|
-| name / ru.name     | user → site title/footer                               | yes      |
-| website            | user (starting point of research)                      | yes      |
-| city / context     | user                                                   | no       |
-| type (shop/cuisine)| user → site → ask only if ambiguous                    | yes      |
-| locator page       | site navigation (Магазины/Адреса/Карта)                | yes      |
-| email / socials    | site footer                                            | no       |
-| wikidata QID       | search by name; may not exist — then omit              | no       |
-| opening hours      | site; otherwise skip — never invent                    | no       |
-| icon               | agent by meaning: reuse → Twemoji (icon-pipeline.md)   | yes      |
+| # | Field              | Source                                                 | Required |
+|---|--------------------|--------------------------------------------------------|----------|
+| 1 | name / ru.name     | user → site title/footer                               | yes      |
+| 2 | website            | user (starting point of research)                      | yes      |
+| 3 | city / context     | user                                                   | no       |
+| 4 | type (shop/cuisine)| user → site → ask only if ambiguous                    | yes      |
+| 5 | locator page       | site navigation (Магазины/Адреса/Карта)                | yes      |
+| 6 | email / socials    | site footer                                            | no       |
+| 7 | wikidata QID       | search by name; may not exist — then omit              | no       |
+| 8 | opening hours      | site; otherwise skip — never invent                    | no       |
+| 9 | icon               | agent by meaning: reuse → Twemoji (icon-pipeline.md)   | yes      |
 
 An empty optional field is better than invented data. Показывай заполненную
 карточку целиком и получи подтверждение до вставки пункта.
