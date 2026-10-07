@@ -32,6 +32,50 @@ If your config already has a `skills` section, append the path to the existing
 `paths` array instead of replacing it. The path in the snippet must match the
 location you cloned to.
 
+## Installing from the remote repository
+
+To use the skill without keeping a development copy of this repository,
+install it from the published git repository: a shallow clone provides the
+skill files and nothing else, and `git pull` keeps it up to date. The clone
+URL below is a placeholder until the repository is published.
+
+### Option 1: shallow clone + `skills.paths` (recommended)
+
+```bash
+git clone --depth 1 https://github.com/ruosm-presets/preset-authoring.git ~/tools/preset-authoring
+```
+
+Register the skill directory in the opencode global config,
+`~/.config/opencode/opencode.json` (or `.jsonc`), via `skills.paths`:
+
+```json
+{
+  "skills": {
+    "paths": ["~/tools/preset-authoring/.opencode/skills"]
+  }
+}
+```
+
+`skills.paths` is scanned recursively for `**/SKILL.md`, so every skill the
+repository ships is picked up. Restart opencode after editing the config
+(the config is not hot-reloaded). To update the skill later: `git pull` in
+the clone, then restart opencode again.
+
+### Option 2: symlink (no config edit)
+
+opencode auto-discovers skills at
+`~/.config/opencode/skills/<name>/SKILL.md`, so a symlink into the clone
+works without editing the config:
+
+```bash
+git clone --depth 1 https://github.com/ruosm-presets/preset-authoring.git ~/tools/preset-authoring
+ln -s ~/tools/preset-authoring/.opencode/skills/add-brand-preset ~/.config/opencode/skills/add-brand-preset
+```
+
+Restart opencode after creating the symlink. Updates are the same: `git pull`
+in the clone, then restart opencode. To remove the skill, delete the symlink:
+`rm ~/.config/opencode/skills/add-brand-preset`.
+
 ## Restart opencode
 
 The config is not hot-reloaded: after editing `opencode.json`, restart
