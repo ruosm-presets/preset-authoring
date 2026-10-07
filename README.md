@@ -14,7 +14,7 @@
 Склонируйте репозиторий куда угодно, например в `~/Dev/preset-authoring`:
 
 ```bash
-git clone <url-of-this-repository> ~/Dev/preset-authoring
+git clone https://github.com/ruosm-presets/preset-authoring ~/Dev/preset-authoring
 ```
 
 Зарегистрируйте каталог скиллов в глобальном конфиге opencode,
@@ -37,7 +37,6 @@ git clone <url-of-this-repository> ~/Dev/preset-authoring
 Чтобы пользоваться скиллом, не держа development-копию этого репозитория,
 установите его из опубликованного git-репозитория: shallow-клон содержит
 только файлы скилла и ничего больше, а `git pull` держит их актуальными.
-URL клона ниже — заглушка, пока репозиторий не опубликован.
 
 ### Вариант 1: shallow-клон + `skills.paths` (рекомендуется)
 
