@@ -1,24 +1,24 @@
 # preset-authoring
 
-An opencode skill (`add-brand-preset`) that walks an AI agent through adding a
-brand/chain POI `<item>` to the
-[literan-moscow](https://github.com/ruosm-presets/literan-moscow) JOSM tagging
-preset: brand research, tags, icon selection, insertion at the right position,
-and checks. The preset repository gets no AI tooling of its own — all
-executable checks stay in literan-moscow (`scripts/check_presets.py`); this
-repository is markdown only. Background, scope and process design:
-[docs/spec.md](docs/spec.md).
+Скилл для opencode (`add-brand-preset`), который ведёт AI-агента через
+добавление `<item>` бренда/сети POI в JOSM-заготовки
+[literan-moscow](https://github.com/ruosm-presets/literan-moscow):
+исследование бренда, теги, подбор иконки, вставка в нужную позицию и
+проверки. Пресет-репозиторий не получает собственной AI-обвязки — все
+исполняемые проверки остаются в literan-moscow (`scripts/check_presets.py`);
+этот репозиторий состоит только из markdown. Предыстория, рамки задачи и
+устройство процесса: [docs/spec.md](docs/spec.md).
 
-## Installation
+## Установка
 
-Clone this repository anywhere, e.g. `~/Dev/preset-authoring`:
+Склонируйте репозиторий куда угодно, например в `~/Dev/preset-authoring`:
 
 ```bash
 git clone <url-of-this-repository> ~/Dev/preset-authoring
 ```
 
-Register the skill directory in the opencode global config,
-`~/.config/opencode/opencode.json`, via `skills.paths`:
+Зарегистрируйте каталог скиллов в глобальном конфиге opencode,
+`~/.config/opencode/opencode.json`, через `skills.paths`:
 
 ```json
 {
@@ -28,25 +28,25 @@ Register the skill directory in the opencode global config,
 }
 ```
 
-If your config already has a `skills` section, append the path to the existing
-`paths` array instead of replacing it. The path in the snippet must match the
-location you cloned to.
+Если в конфиге уже есть секция `skills`, допишите путь в существующий
+массив `paths`, а не заменяйте его. Путь в примере должен совпадать с
+местом, куда вы склонировали репозиторий.
 
-## Installing from the remote repository
+## Установка из удалённого репозитория
 
-To use the skill without keeping a development copy of this repository,
-install it from the published git repository: a shallow clone provides the
-skill files and nothing else, and `git pull` keeps it up to date. The clone
-URL below is a placeholder until the repository is published.
+Чтобы пользоваться скиллом, не держа development-копию этого репозитория,
+установите его из опубликованного git-репозитория: shallow-клон содержит
+только файлы скилла и ничего больше, а `git pull` держит их актуальными.
+URL клона ниже — заглушка, пока репозиторий не опубликован.
 
-### Option 1: shallow clone + `skills.paths` (recommended)
+### Вариант 1: shallow-клон + `skills.paths` (рекомендуется)
 
 ```bash
 git clone --depth 1 https://github.com/ruosm-presets/preset-authoring.git ~/tools/preset-authoring
 ```
 
-Register the skill directory in the opencode global config,
-`~/.config/opencode/opencode.json` (or `.jsonc`), via `skills.paths`:
+Зарегистрируйте каталог скиллов в глобальном конфиге opencode,
+`~/.config/opencode/opencode.json` (или `.jsonc`), через `skills.paths`:
 
 ```json
 {
@@ -56,16 +56,16 @@ Register the skill directory in the opencode global config,
 }
 ```
 
-`skills.paths` is scanned recursively for `**/SKILL.md`, so every skill the
-repository ships is picked up. Restart opencode after editing the config
-(the config is not hot-reloaded). To update the skill later: `git pull` in
-the clone, then restart opencode again.
+`skills.paths` сканируется рекурсивно по маске `**/SKILL.md`, поэтому
+подхватывается каждый скилл из репозитория. После правки конфига
+перезапустите opencode (конфиг не перезагружается на лету). Обновление
+скилла позже: `git pull` в клоне, затем снова перезапустите opencode.
 
-### Option 2: symlink (no config edit)
+### Вариант 2: символьная ссылка (без правки конфига)
 
-opencode auto-discovers skills at
-`~/.config/opencode/skills/<name>/SKILL.md`, so a symlink into the clone
-works without editing the config:
+opencode сам обнаруживает скиллы по пути
+`~/.config/opencode/skills/<name>/SKILL.md`, поэтому симлинк в клон
+работает без правки конфига:
 
 ```bash
 git clone --depth 1 https://github.com/ruosm-presets/preset-authoring.git ~/tools/preset-authoring
@@ -73,19 +73,20 @@ mkdir -p ~/.config/opencode/skills
 ln -s ~/tools/preset-authoring/.opencode/skills/add-brand-preset ~/.config/opencode/skills/add-brand-preset
 ```
 
-Restart opencode after creating the symlink. Updates are the same: `git pull`
-in the clone, then restart opencode. To remove the skill, delete the symlink:
-`rm ~/.config/opencode/skills/add-brand-preset`.
+После создания симлинка перезапустите opencode. Обновление то же самое:
+`git pull` в клоне, затем перезапуск opencode. Чтобы убрать скилл, удалите
+симлинк: `rm ~/.config/opencode/skills/add-brand-preset`.
 
-## Restart opencode
+## Перезапуск opencode
 
-The config is not hot-reloaded: after editing `opencode.json`, restart
-opencode. The `add-brand-preset` skill appears only after the restart.
+Конфиг не перезагружается на лету: после правки `opencode.json`
+перезапустите opencode. Скилл `add-brand-preset` появляется только после
+перезапуска.
 
-## Requirements
+## Требования
 
-- [opencode](https://opencode.ai) (or any agent that reads `SKILL.md` files).
-- A local clone of [literan-moscow](https://github.com/ruosm-presets/literan-moscow):
-  the skill edits `russian_shops.xml` and `pics/icons/` there and runs
-  `python3 scripts/check_presets.py --no-http russian_shops.xml` inside that
-  clone.
+- [opencode](https://opencode.ai) (или любой агент, читающий файлы
+  `SKILL.md`).
+- Локальный клон [literan-moscow](https://github.com/ruosm-presets/literan-moscow):
+  скилл правит в нём `russian_shops.xml` и `pics/icons/` и запускает внутри
+  клона `python3 scripts/check_presets.py --no-http russian_shops.xml`.

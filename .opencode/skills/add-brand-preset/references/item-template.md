@@ -17,6 +17,7 @@ style:
   <!-- blank line at the top of the screen form -->
   <space />
   <!-- screen-form input fields (<combo>/<reference>/<text>), canonical order -->
+  <!-- brand is normally a fixed <key key="brand" ... />; use <combo> only for multi-brand items -->
   <combo key="brand" text="Brand" values="{{brand}}" />
   <combo key="opening_hours" text="Opening Hours" values="{{opening_hours}}" />
   <!-- if no chunk covers a field, add it inline (last resort — see the bad example) -->
